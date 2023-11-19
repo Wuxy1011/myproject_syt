@@ -21,6 +21,8 @@ import { reduceEachLeadingCommentRange } from 'typescript';
 
 <style lang="scss" scoped>
 .top {
+	position: fixed;
+	z-index: 999;
     width: 100%;
     height: 70px;
     background: #fff;
@@ -28,14 +30,34 @@ import { reduceEachLeadingCommentRange } from 'typescript';
     justify-content: center;
 
     .content {
-        background: red;
+        background: white;
         width: 80%;
         height: 70px;
 		display: flex;
 		justify-content: space-between;
-		img{
-			width: 50px;
-			height: 50px;
+		
+		.left{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 16px;
+			p{
+				color: #55a6fe;
+			}
+			img{
+			width: 60px;
+			height: 60px;
+			margin-right: 5px;
+		}
+		}
+		.right{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color:#bbb;
+			.help{
+				margin-right: 5px;
+			}
 		}
     }
 }
