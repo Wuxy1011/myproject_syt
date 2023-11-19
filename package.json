@@ -4,14 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "sass": "^1.69.5",
     "vue": "^3.3.8"
   },
   "devDependencies": {
+    "@types/node": "^20.9.1",
+    "@types/vue": "^2.0.0",
     "@vitejs/plugin-vue": "^4.5.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.0",
