@@ -14,6 +14,12 @@
 
         <!-- 地区 -->
         <Region></Region>
+
+        <!-- 展示医院卡片的组件 -->
+        <div class="hospital">
+        <Card v-for=" item in 6" :key="item" class="item"></Card>
+
+        </div>
       </el-col>
       <el-col :span="4">456</el-col>
     </el-row>
@@ -29,8 +35,18 @@ import Search from "../home/search/index.vue"
 import Lever from "../home/level/index.vue"
 // 引入地区组件
 import Region from "../home/region/index.vue"
+// 引入医院卡片组件
+import Card from "../home/card/index.vue"
 </script>
 
 <style scoped lang="scss">
-
+.hospital{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .item{
+    width: 48%;
+    margin: 10px 0;
+  }
+}
 </style>
