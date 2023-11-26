@@ -10,14 +10,14 @@
     <el-row :gutter="20">
       <el-col :span="20">
         <!-- 医院等级 -->
-        <Lever></Lever>
+        <Lever @getLevel="getLevel"></Lever>
 
         <!-- 地区 -->
         <Region></Region>
 
         <!-- 展示医院卡片的组件 -->
         <div class="hospital">
-          <Card v-for=" (item,index) in hasHospital" :key="index" class="item" :hospitalInfo="item"></Card>
+          <Card v-for=" (item,index) in hasHospitalArr" :key="index" class="item" :hospitalInfo="item"></Card>
 
         </div>
 
@@ -55,29 +55,29 @@ import Lever from "../home/level/index.vue"
 import Region from "../home/region/index.vue"
 // 引入医院卡片组件
 import Card from "../home/card/index.vue"
-
+// 引入医院类型
+import { Content,HospitalResponseData } from '@/api/home/type'
 // 分页器数据
 let pageNo=ref<number>(1)
 let pageSize=ref<number>(10)
 // 存储已有的医院的数据
-let hasHospital = ref([])
+let hasHospitalArr = ref<Content>([])
 // 存储医院总个数
-let total = ref(0)
+let total = ref<number>(0)
+//存储医院的等级相应数据
+const hostype = ref<string>('')
 // 组件挂载完毕发送一次请求
 onMounted(() => {
   getHospitalInfo()
 })
 // 获取医院数据
 const getHospitalInfo = async() => {
-  let res:any= await reqHospital(pageNo.value,pageSize.value)
+  let res:HospitalResponseData= await reqHospital(pageNo.value,pageSize.value,hostype.value)
   if(res.code==200){
-    hasHospital.value=res.data.content
+    hasHospitalArr.value=res.data.content
   }
-  console.log(hasHospital);
+  console.log(hasHospitalArr);
   total.value=res.data.totalElements
-  console.log(total);
-  
-  
 }
 
 // 分页器页码回调
@@ -86,6 +86,11 @@ const currentChange = () => {
 }
 // 分页器下拉菜单发生变化
 const sizeChange = () => {
+  getHospitalInfo()
+}
+
+const getLevel = (level:string) => {
+  hostype.value=level
   getHospitalInfo()
 }
 </script>

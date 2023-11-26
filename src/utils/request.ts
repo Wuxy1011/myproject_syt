@@ -10,7 +10,7 @@ import { ElMessage } from 'element-plus';
 //利用axios.create方法创建一个axios实例:可以设置基础路径、超时的时间的设置
 const request = axios.create({
       baseURL: '/api',//请求的基础路径的设置
-      timeout: 5000//超时的时间的设置,超出五秒请求就是失败的
+      timeout: 10000//超时的时间的设置,超出五秒请求就是失败的
 });
 
 //请求拦截器

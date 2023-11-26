@@ -3,22 +3,35 @@
         <div class="content">
             <div class="left">地区：</div>
             <ul>
-                <li class="active">全部</li>
-                <li>四川</li>
-                <li>四川</li>
-                <li>四川</li>
-                <li>四川</li>
-                <li>四川</li>
-                <li>四川</li>
-                <li>四川</li>
-                <li>四川</li>
+                <li :class="{active:activeValue==''}" @click="changeRegion('')">全部</li>
+                <li v-for="item in regionArr" :key="item.value" @click="changeRegion(item.value)" :class="{active:activeValue==item.value}">{{item.name}}</li>
             </ul>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-
+import {HospitalLevelAndRegionResponseData,HospitalLevelAndRegionArr} from '@/api/home/type'
+import {reqHospitalLevelAndRegion} from '@/api/home/index'
+import {onMounted,ref} from 'vue'
+onMounted(() => {
+    getRegion()
+})
+// 定义高亮
+const activeValue=ref<string>('')
+// 定义地区数组
+const regionArr=ref<HospitalLevelAndRegionArr>([])
+const getRegion = async() => {
+    const res:HospitalLevelAndRegionResponseData=await reqHospitalLevelAndRegion('Beijin')
+    if(res.code==200){
+        regionArr.value=res.data
+    }
+    console.log(regionArr.value,"@@@");
+    
+}
+const changeRegion = (region:string) => {
+    activeValue.value=region
+}
 </script>
 
 <style scoped lang="scss">

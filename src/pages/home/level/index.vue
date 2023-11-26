@@ -4,17 +4,39 @@
         <div class="content">
             <div class="left">等级：</div>
             <ul>
-                <li class="active">全部</li>
-                <li>三级甲等</li>
-                <li>三级甲等</li>
-                <li>三级甲等</li>
-                <li>三级甲等</li>
+                <li :class="{active:activeValue==''}" @click="changeLevel('')">全部</li>
+                <li v-for="item in LevelArr" :key="item.value" @click="changeLevel(item.value)" :class="{active:activeValue==item.value}">{{item.name}}</li>
             </ul>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import {reqHospitalLevelAndRegion} from '@/api/home/index'
+import {HospitalLevelAndRegionResponseData,HospitalLevelAndRegionArr} from '@/api/home/type'
+import {onMounted,ref} from 'vue'
+
+onMounted(() => {
+    getLevel()
+})
+// 设置高亮
+const activeValue=ref<string>('')
+// 定义医院数组获取数据
+const LevelArr=ref<HospitalLevelAndRegionArr>([])
+const getLevel = async() => {
+    const res:HospitalLevelAndRegionResponseData = await reqHospitalLevelAndRegion('HosType')
+    if(res.code==200){
+        LevelArr.value=res.data
+    }
+}
+
+// 高亮
+const changeLevel = (level:string) => {
+    activeValue.value=level
+    $emit('getLevel',level)
+
+}
+const $emit = defineEmits(['getLevel'])
 
 </script>
 
