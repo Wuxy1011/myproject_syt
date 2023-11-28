@@ -31,7 +31,10 @@ const getRegion = async() => {
 }
 const changeRegion = (region:string) => {
     activeValue.value=region
+    $emit("getRegion",activeValue.value)
 }
+
+const $emit = defineEmits(['getRegion'])
 </script>
 
 <style scoped lang="scss">
