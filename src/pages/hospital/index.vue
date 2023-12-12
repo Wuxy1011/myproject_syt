@@ -1,6 +1,6 @@
 <template>
   <div class="hospital">
-  22
+  <RouterView></RouterView>
         
   </div>
 </template>

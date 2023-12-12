@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-card class="box-card" shadow="hover">
+        <el-card class="box-card" shadow="hover" @click="goDetail">
 
             <div class="content">
                 <div class="left">
@@ -33,8 +33,20 @@
 </template>
 
 <script setup lang="ts">
+// 引入路由
+import { useRouter } from "vue-router";
+
+let $router = useRouter();
 // 接受父组件传递过来的数据
-defineProps(['hospitalInfo'])
+let props =  defineProps(['hospitalInfo'])
+
+// 跳转到医院详情
+const goDetail = () => {
+    $router.push({
+        path:'/hospital/register',
+        query:{hoscode:props.hospitalInfo.hoscode}
+    })
+}
 </script>
 
 <style scoped lang="scss">

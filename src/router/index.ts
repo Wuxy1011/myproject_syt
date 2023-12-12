@@ -15,6 +15,15 @@ export default createRouter({
         {
             path: '/hospital',
             component: () => import('@/pages/hospital/index.vue'),
+            children:[
+                {
+                    path:'register',
+                    component: () => import('@/pages/hospital/register/index.vue'),
+                    meta:{
+                        title:'预约挂号'
+                    }
+                }
+            ]
            
         },
         {
