@@ -35,7 +35,7 @@
           @size-change="sizeChange"
            />
       </el-col>
-      <el-col :span="4">456</el-col>
+      <el-col :span="4"><Tip/></el-col>
     </el-row>
   </div>
 </template> 
@@ -55,6 +55,8 @@ import Lever from "../home/level/index.vue"
 import Region from "../home/region/index.vue"
 // 引入医院卡片组件
 import Card from "../home/card/index.vue"
+// 引入右侧组件
+import Tip from "../home/tip/inedx.vue"
 // 引入医院类型
 import { Content,HospitalResponseData } from '@/api/home/type'
 // 分页器数据

@@ -6,7 +6,7 @@
         :fetch-suggestions="fetchData" 
         @select="goDetail"
         :trigger-on-focus="false"/>
-        <el-button type="primary" size="default" @click="search()" :icon="Search">搜索</el-button>
+        <el-button type="primary" size="default" :icon="Search">搜索</el-button>
     </div>
 </template>
 
@@ -41,7 +41,7 @@ console.log(item,'it');
 </script>
 
 <style scoped lang="scss">
-.search {
+.search {  
     margin: 15px 0;
     display: flex;
     justify-content: center;

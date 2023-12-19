@@ -16,4 +16,4 @@ export const reqHospital = (page: number, limit: number, hostype = '' ,districtC
 //获取医院的等级或者获取医院地区的数据
 export const reqHospitalLevelAndRegion = (dictCode: string) => request.get<any, HospitalLevelAndRegionResponseData>(API.HOSPITALLEVElANDREGION_URL + dictCode);
 //根据关键字获取医院的数据进行展示
-export const reqHospitalInfo = (hosname:string, hoscode: number) => request.get<any,HospitalInfo>(API.HOSPITALINFO_URL + `${hosname}`)
+export const reqHospitalInfo = (hosname:string) => request.get<any,HospitalInfo>(API.HOSPITALINFO_URL + `${hosname}`)
