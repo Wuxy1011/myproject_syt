@@ -15,15 +15,15 @@
 import { Search } from "@element-plus/icons-vue"
 import { reqHospitalInfo } from "@/api/home/index"
 import type { HospitalInfo } from "@/api/home/type";
-
+import { useRouter } from "vue-router";
 import { ref } from "vue";
+
+let $router = useRouter();
 let hostname = ref<string>('')
 //类似于防抖，当输入完毕后自动触发，里边有两个参数，传入的值和调用的函数，调用的函数就是最后显示的结果
 // 逻辑：输入完毕调用，要显示数据就得获取数据，再发起请求将获取的数据赋值给value，传入一个数组，展示value
 const fetchData = async(hostname: string,fun: any) => {
     let res:HospitalInfo =  await reqHospitalInfo(hostname)
-    console.log(res.data,'aaa')
-    
     let showData = res.data.map((item: any) => {
         return{
             value:item.hosname,
@@ -35,8 +35,7 @@ const fetchData = async(hostname: string,fun: any) => {
 
 // item为注入的点击项,值就是showData
 const goDetail = (item: any) => {
-console.log(item,'it');
-
+$router.push({ path: "/hospital/register",query:{hoscode:item.hoscode}});
 }
 </script>
 

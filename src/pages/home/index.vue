@@ -18,7 +18,6 @@
         <!-- 展示医院卡片的组件 -->
         <div class="hospital" v-if="hasHospitalArr.length > 0">
           <Card v-for=" (item,index) in hasHospitalArr" :key="index" class="item" :hospitalInfo="item"></Card>
-
         </div>
         <el-empty v-else description = '没有信息' />
         <!-- 展示分页器组件 -->
